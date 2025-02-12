@@ -26,7 +26,6 @@ public class Loop {
         player();
         kazdyNeco();
 
-
     }
 
     private static void controls() {
