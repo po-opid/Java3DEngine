@@ -2,37 +2,44 @@ import java.awt.*;
 
 public class Loop {
 
-    public static int fps = 60;
+    public static int fps = 120;
     public static int loopNum = 0;
     static long startTime;
+    static long lastLoopTime;
+    static long timeOfLoop = 1000000000/fps;
 
     static int xCord = 50;
     static int yCord = 50;
     static int playerSize = 50;
     static int playerSpeed = 3;
 
+    static int W = Inputs.getNum("W");
+    static int A = Inputs.getNum("A");
+    static int S = Inputs.getNum("S");
+    static int D = Inputs.getNum("D");
 
 
     public static void loop() {
 
-        player();
-        controls();
 
+        controls();
+        player();
         kazdyNeco();
+
 
     }
 
     private static void controls() {
-        if (Inputs.LEFT) {
+        if (Inputs.LEFT || Inputs.LETTERS[A]) {
             xCord = xCord-playerSpeed;
         }
-        if (Inputs.RIGHT) {
+        if (Inputs.RIGHT || Inputs.LETTERS[D]) {
             xCord = xCord+playerSpeed;
         }
-        if (Inputs.UP) {
+        if (Inputs.UP || Inputs.LETTERS[W]) {
             yCord = yCord-playerSpeed;
         }
-        if (Inputs.DOWN) {
+        if (Inputs.DOWN || Inputs.LETTERS[S]) {
             yCord = yCord+playerSpeed;
         }
 
@@ -46,6 +53,8 @@ public class Loop {
             if (System.nanoTime() >= nextLoopTime) {
                 loop();
                 loopNum++;
+                timeOfLoop = nextLoopTime - lastLoopTime;
+                lastLoopTime = nextLoopTime;
             }
         }
     }
@@ -70,6 +79,9 @@ public class Loop {
         if (loopNum % 4 == 0) {
             kazdy4();
         }
+        if (loopNum % fps == 0) {
+            kazdy1Sekunda();
+        }
 
     }
 
@@ -87,6 +99,10 @@ public class Loop {
 
     public static void kazdy4(){
 
+    }
+
+    public static void kazdy1Sekunda(){
+        System.out.println(timeOfLoop);
     }
 
 }

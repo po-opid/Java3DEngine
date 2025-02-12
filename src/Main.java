@@ -12,10 +12,7 @@ public class Main {
 
         start();
 
-
-
         Loop.startLoop();
-
 
     }
 
