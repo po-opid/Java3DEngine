@@ -18,11 +18,12 @@ public class DrawingPanel extends JPanel {
         }
     }
 
-    public void drawCustomTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Color color) {
+    public void addCustomTriangle(int x1, int y1, int x2, int y2, int x3, int y3, Color color) {
 
         triangles.add(new Triangle(new int[]{x1, x2, x3}, new int[]{y1, y2, y3}, color));
-        repaint();
+
     }
+
 
     // Vnitřní třída pro reprezentaci trojúhelníku
     private static class Triangle {

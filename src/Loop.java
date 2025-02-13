@@ -23,8 +23,11 @@ public class Loop {
 
 
         controls();
+        DrawingPanel.triangles.clear();
         player();
+
         kazdyNeco();
+        Main.panel.repaint();
 
     }
 
@@ -60,8 +63,12 @@ public class Loop {
 
 
     public static void player(){
-        DrawingPanel.triangles.clear();
+        //DrawingPanel.triangles.clear();
+        //Main.kreslCtverec(0,0,Main.frameSizeX,Main.frameSizeY,Color.gray);
+        //Main.kreslCtverec(0,0,Main.frameSizeX-20,Main.frameSizeY-20,Color.BLUE);
+        //Main.randomCtverceWholeFrame(20,10,Color.BLACK);
         Main.kreslCtverec(xCord,yCord,xCord+playerSize,yCord+playerSize, Color.CYAN);
+
 
     }
 
@@ -101,7 +108,9 @@ public class Loop {
     }
 
     public static void kazdy1Sekunda(){
-        System.out.println(timeOfLoop);
+        System.out.println("--------------------------------");
+        System.out.println("Seconds elapsed:    "+loopNum/fps);
+        System.out.println("Triangles to draw:  "+DrawingPanel.triangles.size());
     }
 
 }

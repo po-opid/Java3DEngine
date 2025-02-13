@@ -3,8 +3,9 @@ import java.awt.*;
 import java.util.Random;
 
 public class Main {
-    private static DrawingPanel panel;
-
+    static DrawingPanel panel;
+    static int frameSizeX = 300;
+    static int frameSizeY = 500;
 
 
 
@@ -21,7 +22,7 @@ public class Main {
     public static void start(){
         JFrame frame = new JFrame("Zelený trojúhelník");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
+        frame.setSize(frameSizeX, frameSizeY);
         frame.setLocationRelativeTo(null);
         panel = new DrawingPanel();
         frame.add(panel);
@@ -33,6 +34,9 @@ public class Main {
 
     }
 
+    public static void randomCtverceWholeFrame(int maxSize, int howMany, Color color){
+        randomCtverce(0,0,frameSizeX,frameSizeY,maxSize,howMany,color);
+    }
 
     public static void randomCtverce(int x1, int y1, int x2, int y2, int maxSize, int howMany, Color color) {
         Random random = new Random();
@@ -44,8 +48,8 @@ public class Main {
         int ySize = Y2-Y1;
 
         for (int i = 0; i <= howMany; i++) {
-            int X1cord = X1+random.nextInt(xSize);
-            int Y1cord = Y1+random.nextInt(ySize);
+            int X1cord = X1+random.nextInt(xSize)-maxSize;
+            int Y1cord = Y1+random.nextInt(ySize)-maxSize;
             int X2cord = X1cord+random.nextInt(maxSize);
             int Y2cord = Y1cord+random.nextInt(maxSize);
 
@@ -77,8 +81,8 @@ public class Main {
 
 
     public static void kreslCtverec(int x1, int y1, int x2, int y2, Color color){
-        panel.drawCustomTriangle(x1, y1, x1, y2, x2, y2, color);
-        panel.drawCustomTriangle(x1, y1, x2, y1, x2, y2, color);
+        panel.addCustomTriangle(x1, y1, x1, y2, x2, y2, color);
+        panel.addCustomTriangle(x1, y1, x2, y1, x2, y2, color);
 
     }
 
