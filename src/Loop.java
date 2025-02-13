@@ -11,7 +11,8 @@ public class Loop {
     static int xCord = 50;
     static int yCord = 50;
     static int playerSize = 50;
-    static int playerSpeed = 3;
+    static int playerSpeed = 300;
+    static double deltaTime = 0;
 
     static int W = Inputs.getNum("W");
     static int A = Inputs.getNum("A");
@@ -35,16 +36,16 @@ public class Loop {
 
     private static void controls() {
         if (Inputs.LEFT || Inputs.LETTERS[A]) {
-            xCord = xCord-playerSpeed;
+            xCord = (int) (xCord-playerSpeed*deltaTime);
         }
         if (Inputs.RIGHT || Inputs.LETTERS[D]) {
-            xCord = xCord+playerSpeed;
+            xCord = (int) (xCord+playerSpeed*deltaTime);
         }
         if (Inputs.UP || Inputs.LETTERS[W]) {
-            yCord = yCord-playerSpeed;
+            yCord = (int) (yCord-playerSpeed*deltaTime);
         }
         if (Inputs.DOWN || Inputs.LETTERS[S]) {
-            yCord = yCord+playerSpeed;
+            yCord = (int) (yCord+playerSpeed*deltaTime);
         }
 
     }
@@ -58,6 +59,7 @@ public class Loop {
                 loop();
                 loopNum++;
                 timeOfLoop = nextLoopTime - lastLoopTime;
+                deltaTime = (double) timeOfLoop/1000000000;
                 lastLoopTime = nextLoopTime;
             }
         }
@@ -68,7 +70,7 @@ public class Loop {
 
         Main.kreslCtverec(0,0,Main.frameSizeX,Main.frameSizeY,Color.gray);
         Main.kreslCtverec(0,0,Main.frameSizeX-20,Main.frameSizeY-20,Color.BLUE);
-        Main.randomCtverceWholeFrame(20,10,Color.BLACK);
+        //Main.randomCtverceWholeFrame(20,10,Color.BLACK);
         Main.kreslCtverec(xCord,yCord,xCord+playerSize,yCord+playerSize, Color.CYAN);
 
 

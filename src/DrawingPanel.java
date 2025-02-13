@@ -11,13 +11,14 @@ public class DrawingPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-        // Pro každý trojúhelník v seznamu vykresli
-
+        List<Triangle> copy;
         synchronized (triangles) {
-            for (Triangle triangle : triangles) {
-                g2d.setColor(triangle.color);
-                g2d.fillPolygon(triangle.xPoints, triangle.yPoints, 3);
-            }
+            copy = new ArrayList<>(triangles); // vytvoření kopie
+        }
+
+        for (Triangle triangle : copy) {
+            g2d.setColor(triangle.color);
+            g2d.fillPolygon(triangle.xPoints, triangle.yPoints, 3);
         }
     }
 
