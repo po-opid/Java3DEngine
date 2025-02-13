@@ -23,7 +23,9 @@ public class Loop {
 
 
         controls();
-        DrawingPanel.triangles.clear();
+        synchronized (DrawingPanel.triangles) {
+            DrawingPanel.triangles.clear();
+        }
         player();
 
         kazdyNeco();
@@ -63,10 +65,10 @@ public class Loop {
 
 
     public static void player(){
-        //DrawingPanel.triangles.clear();
-        //Main.kreslCtverec(0,0,Main.frameSizeX,Main.frameSizeY,Color.gray);
-        //Main.kreslCtverec(0,0,Main.frameSizeX-20,Main.frameSizeY-20,Color.BLUE);
-        //Main.randomCtverceWholeFrame(20,10,Color.BLACK);
+
+        Main.kreslCtverec(0,0,Main.frameSizeX,Main.frameSizeY,Color.gray);
+        Main.kreslCtverec(0,0,Main.frameSizeX-20,Main.frameSizeY-20,Color.BLUE);
+        Main.randomCtverceWholeFrame(20,10,Color.BLACK);
         Main.kreslCtverec(xCord,yCord,xCord+playerSize,yCord+playerSize, Color.CYAN);
 
 
